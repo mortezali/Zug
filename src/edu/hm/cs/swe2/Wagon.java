@@ -2,6 +2,7 @@ package edu.hm.cs.swe2;
 
 public class Wagon {
 
+	//TODO: sichtbarkeit?
 	int id = 0;
 
 	private final boolean isPassengerWagon;

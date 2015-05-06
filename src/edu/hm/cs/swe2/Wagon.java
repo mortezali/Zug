@@ -2,8 +2,10 @@ package edu.hm.cs.swe2;
 
 public class Wagon {
 
+	
 	int id = 0;
 
+	
 	private final boolean isPassengerWagon;
 	private final boolean carriesDangerousGoods;
 	private Wagon next;
@@ -87,18 +89,19 @@ public class Wagon {
 		if (this.next != null) {
 			if (wagon.isCarriesDangerousGoods()) {
 
-				if (this.next.isPassengerWagon()) {
+				if (this.isPassengerWagon()) {
 					System.out
 							.println("Zug enthält PersonenWaggons; Gefahrgutwaggon kann nicht eingefügt werden");
+				return this;
 				}
+				
 
 			}
 			if (wagon.isPassengerWagon()) {
-				if (!this.next.isPassengerWagon()) {
+				if (!this.isPassengerWagon()) {
 
 					wagon.id = 1;
-					wagon.next = this.next;
-					this.next = wagon;
+					wagon.next = this;
 					return wagon;
 				}
 
@@ -106,11 +109,11 @@ public class Wagon {
 		}
 
 		this.addWagon(wagon, id);
-		return wagon;
+		return this;
 
 	}
 
-	void addWagon(Wagon wagon, int id) {
+	private void addWagon(Wagon wagon, int id) {
 		if (wagon.isPassengerWagon()) {
 			if (wagon.isCarriesDangerousGoods()) {
 
@@ -144,5 +147,10 @@ public class Wagon {
 	public boolean isPassengerWagon() {
 		return true;
 	}
+
+	public int getId() {
+		return id;
+	}
+
 
 }

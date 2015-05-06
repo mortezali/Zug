@@ -37,6 +37,16 @@ public class Locomotive {
 				+ "*************" + "* " + motivePower.toString() + "  *");
 		System.out.println("**********->" + "\n" + " ***     *** ");
 	}
+	
+	private String toString(int level){
+		
+		return printLocomotive(level);
+	}
 
 
+	public String toString(){
+		return toString();
+		
+		
+	}
 }

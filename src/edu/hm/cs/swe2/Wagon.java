@@ -2,10 +2,8 @@ package edu.hm.cs.swe2;
 
 public class Wagon {
 
-	
 	int id = 0;
 
-	
 	private final boolean isPassengerWagon;
 	private final boolean carriesDangerousGoods;
 	private Wagon next;
@@ -28,21 +26,7 @@ public class Wagon {
 
 	}
 
-	public boolean getIsPassengerWagon() {
-		return true;
-	}
-
-	public boolean getIsCarriesDangerousGoods() {
-		return true;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public void setNext(Wagon next) {
-		this.next = next;
-	}
+	
 
 	public void printWagon(int level) {
 		String sign = "";
@@ -92,9 +76,19 @@ public class Wagon {
 				if (this.isPassengerWagon()) {
 					System.out
 							.println("Zug enthält PersonenWaggons; Gefahrgutwaggon kann nicht eingefügt werden");
-				return this;
+					return this;
 				}
-				
+				if (this.next != null) {
+					if (!wagon.isCarriesDangerousGoods()) {
+						if (!wagon.isPassengerWagon()) {
+
+							System.out
+									.println("Zug enthält Gefahrgutwaggon; PersonenWaggons kann nicht eingefügt werden");
+
+						}
+						return this;
+					}
+				}
 
 			}
 			if (wagon.isPassengerWagon()) {
@@ -140,7 +134,6 @@ public class Wagon {
 	}
 
 	private boolean isCarriesDangerousGoods() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
@@ -151,6 +144,19 @@ public class Wagon {
 	public int getId() {
 		return id;
 	}
+	public boolean getIsPassengerWagon() {
+		return true;
+	}
 
+	public boolean getIsCarriesDangerousGoods() {
+		return true;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setNext(Wagon next) {
+		this.next = next;
+	}
 }

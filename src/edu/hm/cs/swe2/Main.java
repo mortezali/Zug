@@ -4,7 +4,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		Locomotive train = new Locomotive();
+		Locomotive train = new Locomotive(null);
 		
 		Wagon GwDa = new Wagon (false, true);
 		Wagon GwoDa = new Wagon (false, false);

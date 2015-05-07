@@ -2,7 +2,8 @@ package edu.hm.cs.swe2;
 
 public class Wagon {
 
-	int id = 0;
+	//TODO: sichtbarkeit?
+	private int id = 0;
 
 	private final boolean isPassengerWagon;
 	private final boolean carriesDangerousGoods;

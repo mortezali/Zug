@@ -40,7 +40,7 @@ public class Locomotive {
 	
 	private String toString(int level){
 		
-		return printLocomotive(level);
+		return toString();
 	}
 
 

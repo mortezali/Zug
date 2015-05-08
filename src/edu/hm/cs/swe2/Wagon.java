@@ -1,8 +1,6 @@
 package edu.hm.cs.swe2;
 
 public class Wagon {
-
-	//TODO: sichtbarkeit?
 	private int id = 0;
 
 	private final boolean isPassengerWagon;
@@ -26,8 +24,6 @@ public class Wagon {
 		}
 
 	}
-
-	
 
 	public void printWagon(int level) {
 		String sign = "";
@@ -145,6 +141,7 @@ public class Wagon {
 	public int getId() {
 		return id;
 	}
+
 	public boolean getIsPassengerWagon() {
 		return true;
 	}

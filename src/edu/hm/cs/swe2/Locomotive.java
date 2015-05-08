@@ -15,14 +15,14 @@ public class Locomotive {
 
 	private static int totalSteamedPower = 0;
 	private static int totalCreated = 0;
-	
+
 	public Locomotive(MotivePower motivePower, Wagon wagon) {
 
 		this.motivePower = motivePower;
 		this.next = wagon;
 		totalCreated++;
-		
-		if( this.motivePower == MotivePower.STEAM ){
+
+		if (this.motivePower == MotivePower.STEAM) {
 			totalSteamedPower++;
 		}
 
@@ -34,8 +34,14 @@ public class Locomotive {
 			this.next = next;
 			next.setId(id);
 		}
+		
+		
 		// TODO: Hier die Methode aus der Wagonklasse hinzuf�gen, die einen
 		// Wagon hinzuf�gt
+		
+		Wagon wagon = new Wagon (true, true);
+		wagon.addWagon(wagon);	
+		
 	}
 
 	private String toString(int level) {
@@ -43,22 +49,24 @@ public class Locomotive {
 		return null;
 	}
 
-	//TODO: l�uft die 5 ebenen durch und ruft jeweils alle Ebenen auf.
+	// TODO: l�uft die 5 ebenen durch und ruft jeweils alle Ebenen auf.
 	public String toString() {
 		return toString();
 
 	}
-//	Erstellen Sie die Methode  printTrain(), die die Darstellung des kompletten Zuges als 
-//	Zeichenkette auf der Console ausgibt (Level 3, Anwenden).
-	
-	//TODO: Die Methode sollte durch printTrain() ersetzt werden und arbeitet mit toStirng()
+
+	// Erstellen Sie die Methode printTrain(), die die Darstellung des
+	// kompletten Zuges als
+	// Zeichenkette auf der Console ausgibt (Level 3, Anwenden).
+
+	// TODO: Die Methode sollte durch printTrain() ersetzt werden und arbeitet
+	// mit toStirng()
 	public void printLocomotive(int level) {
 
 		System.out.println("**    ******" + "\n" + "**    *     *" + "\n"
 				+ "*************" + "* " + motivePower.toString() + "  *");
 		System.out.println("**********->" + "\n" + " ***     *** ");
 	}
-	
 
 	public Wagon getNext() {
 		return next;

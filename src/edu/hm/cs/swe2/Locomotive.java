@@ -38,7 +38,7 @@ public class Locomotive {
 		
 		// TODO: Hier die Methode aus der Wagonklasse hinzuf�gen, die einen
 		// Wagon hinzuf�gt
-		
+	
 		Wagon wagon = new Wagon (true, true);
 		wagon.addWagon(wagon);	
 		

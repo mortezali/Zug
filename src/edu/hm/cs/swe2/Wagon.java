@@ -14,7 +14,7 @@ public class Wagon {
 		if (this.isPassengerWagon() && carriesDangerousGoods) {
 
 			System.out
-					.println("Personenwaggon darf kein Gefahrgut enthalten! Waggon nicht beladen!");
+					.println("Personenwaggon, darf kein Gefahrgut enthalten! Waggon nicht beladen!");
 
 			this.carriesDangerousGoods = false;
 

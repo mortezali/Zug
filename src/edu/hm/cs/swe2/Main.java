@@ -6,10 +6,10 @@ public class Main {
 		
 		Locomotive train = new Locomotive(null);
 		
-		Wagon GwDa = new Wagon (false, true);
-		Wagon GwoDa = new Wagon (false, false);
+		Wagon GwDa = new Wagon (true, true);
+		Wagon GwoDa = new Wagon (true, false);
 		Wagon PwwDa = new Wagon (false, true);
-		Wagon PwoDa = new Wagon (false, false);
+		Wagon PwoDa = new Wagon (true, false);
 		
 		
 

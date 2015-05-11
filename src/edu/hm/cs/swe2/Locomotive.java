@@ -32,22 +32,14 @@ public class Locomotive {
 
 		if (next == null) {
 			this.next = next;
-			next.setId(id);
+			next.setId(1);
+		} else {
+			next.addWagon(next);
 		}
-		
-		
-		// TODO: Hier die Methode aus der Wagonklasse hinzuf�gen, die einen
-		// Wagon hinzuf�gt
+
+	}
+
 	
-		Wagon wagon = new Wagon (true, true);
-		wagon.addWagon(wagon);	
-		
-	}
-
-	private String toString(int level) {
-
-		return null;
-	}
 
 	// TODO: l�uft die 5 ebenen durch und ruft jeweils alle Ebenen auf.
 	public String toString() {
@@ -61,12 +53,38 @@ public class Locomotive {
 
 	// TODO: Die Methode sollte durch printTrain() ersetzt werden und arbeitet
 	// mit toStirng()
-	public void printLocomotive(int level) {
+	public String toString(int level) {
+		
+		String output = "";
+		
+		switch(level){
+		case 5 : 
+			
+			
+			break;
+			
+		case 4 :
+				
+				break;
+		case 3 :
+			
+			break;
+		case 2:
+			break;
+		case 1:
+			break;
+		case 0 :
+			break;
+			default:
+				break;
+		}
+return output;
 
-		System.out.println("**    ******" + "\n" + "**    *     *" + "\n"
-				+ "*************" + "* " + motivePower.toString() + "  *");
-		System.out.println("**********->" + "\n" + " ***     *** ");
 	}
+//		System.out.println("**    ******" + "\n" + "**    *     *" + "\n"
+//				+ "*************" + "* " + motivePower.toString() + "  *");
+//		System.out.println("**********->" + "\n" + " ***     *** ");
+	
 
 	public Wagon getNext() {
 		return next;

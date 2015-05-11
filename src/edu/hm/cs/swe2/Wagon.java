@@ -25,7 +25,7 @@ public class Wagon {
 
 	}
 
-	public void printWagon(int level) {
+	public String printWagon(int level) {
 		String sign = "";
 		if (!this.isPassengerWagon()) {
 			sign = "f";

@@ -30,11 +30,11 @@ public class Locomotive {
 
 	public void addWagon(Wagon next) {
 
-		if (next == null) {
+		if (this.next == null) {
 			this.next = next;
 			next.setId(1);
 		} else {
-			next.addWagon(next);
+			this.next = this.next.addWagon(next);
 		}
 
 	}
@@ -52,7 +52,7 @@ public String toString() {
 		String result = "";
 		
 		// Ruft private Hilfsmethode auf; 
-		// Auszugebende Zeile über Parameter i gesteuert 
+		// Auszugebende Zeile ï¿½ber Parameter i gesteuert 
 		for (int i=5; i>=0; i--) {
 		  result += this.toString(i);
 		}
@@ -101,7 +101,7 @@ private String toString(int level) {
 	String result = "";
 	switch (level) {
 	case 0:
-		// Erzeugen der Räder
+		// Erzeugen der Rï¿½der
 		result += " ***    ***   ";
 		break;
 	case 1:
@@ -130,9 +130,9 @@ private String toString(int level) {
 }
 	
 	public void printTrain() {
-		// Öffentlich aufrufbare Methode zum Drucken eines Zugs;
+		// ï¿½ffentlich aufrufbare Methode zum Drucken eines Zugs;
 		// Ruft gleichnamige private Ausgabemethode auf; 
-		// Auszugebende Zeile über Parameter i gesteuert 
+		// Auszugebende Zeile ï¿½ber Parameter i gesteuert 
 		System.out.println(this.toString());
 	}
 //		System.out.println("**    ******" + "\n" + "**    *     *" + "\n"

@@ -59,11 +59,11 @@ public class Wagon {
 
 		switch (level) {
 		case 0:
-			// Darstellen der R�der
+			// Darstellen der R�der
 			result += " ***  ***   ";
 			break;
 		case 1:
-			// Darstellen von Bodenplatte und Anh�ngerkupplung
+			// Darstellen von Bodenplatte und Anh�ngerkupplung
 			result += "**********->";
 			break;
 		case 2:
@@ -94,14 +94,14 @@ public class Wagon {
 			// Zeilenumbruch, falls Zugende erreicht ist
 			result += "\n";
 		} else {
-			// Gleiche Zeile f�r n�chsten Waggon darstellen
+			// Gleiche Zeile f�r n�chsten Waggon darstellen
 			result += next.toString(level);
 		}
 
 		return result;
 	}
 
-	public boolean trainCarriesDangerousGoods(Wagon wagon) {
+/*	public boolean trainCarriesDangerousGoods(Wagon wagon) {
 
 		if (wagon.isCarriesDangerousGoods()) {
 			return true;
@@ -112,9 +112,20 @@ public class Wagon {
 			}
 		}
 		return false;
+	}*/
+	public boolean trainCarriesDangerousGoods() {
+		if (carriesDangerousGoods) {
+			return true;
+		} else if (next == null) {
+			return false;
+		} else {
+			return next.trainCarriesDangerousGoods();
+		}
 	}
+	
+	
 
-	public Wagon addWagon(Wagon wagon) {
+	/*public Wagon addWagon(Wagon wagon) {
 		if (this.next != null) {
 			if (wagon.isCarriesDangerousGoods()) {
 
@@ -176,14 +187,96 @@ public class Wagon {
 			}
 		}
 
+	}*/
+	
+	/**
+	 * Hängt den neuen Waggon hinter dem aktuellen Waggon ein.
+	 * 
+	 * @param newWagon
+	 *            Der einzuhängende Waggon.
+	 * @return Der erste Waggon des ggf. modifizierten Zuges
+	 */
+	public Wagon addWagon(Wagon newWagon) {
+		if (newWagon.isPassengerWagon() && this.isPassengerWagon == false) {
+			// Neuer Waggon ist Personenwaggon;
+			// Zug enthält bisher nur Güterwaggons;
+			// Personenwaggon also davor einfügen, sofern kein Gefahrgut im Zug
+			if (this.trainCarriesDangerousGoods()) {
+				// Restlicher Zug enthält Gefahrgut, Waggon nicht einfügen
+				System.out
+						.println("Personenwaggon kann nicht eingefügt werden, da Zug bereits Gefahrgut enthält");
+				return this;
+			} else {
+				// Restlicher Zug enthält kein Gefahrgut, Waggon einfügen
+				newWagon.setNext(next);
+				return newWagon;
+			}
+		} else if (newWagon.getIsCarriesDangerousGoods() && this.isPassengerWagon) {
+			// Neuer Waggon ist Güterwaggon mit Gefahrgut;
+			// Zug enthält bereits Personenwaggons;
+			// Neuer Waggon kann nicht eingefügt werden
+			System.out
+					.println("Zug enthält Personenwaggons; Gefahrgutwaggon kann nicht eingefügt werden");
+			return this;
+		} else {
+			this.addWagon(newWagon, 1);
+			return this;
+		}
 	}
 
+	/**
+	 * Hängt den neuen Waggon hinter dem aktuellen Waggon ein.
+	 * 
+	 * Bei Eintritt in diese Methode ist sichergestellt, dass der einzufügende
+	 * Waggon hinter dem aktuellen Waggon einzuhängen ist, und dass nicht
+	 * versucht wird, einen Gefahrgutwaggon in einen Personenzug einzuhängen.
+	 * 
+	 * @param newWagon
+	 *            Der einzuhängende Waggon.
+	 * @param numberOfWagons
+	 *            Die Ordnungsnummer des aktuellen Waggons, an den der neue
+	 *            Waggon angehängt werden soll.
+	 */
+	private void addWagon(Wagon newWagon, int numberOfWagons) {
+
+		if (next == null) {
+			// Zug hat keine weiteren Waggons
+			if (newWagon.isPassengerWagon() == isPassengerWagon) {
+				// Neuer Waggon und aktueller Waggon sind vom gleichen Typ
+				newWagon.setId(numberOfWagons + 1);
+			} else {
+				// w ist der erste und letzte Güterwaggon in einem Personenzug
+				newWagon.setId(1);
+			}
+			this.setNext(newWagon);
+		} else if (next.isPassengerWagon() == isPassengerWagon) {
+			// Nächster Waggon ist vom gleichen Typ wie aktueller Waggon; Zug
+			// weiter durchlaufen
+			next.addWagon(newWagon, numberOfWagons + 1);
+		} else {
+			// Nächster Waggon ist der erste Güterwaggon
+			if (newWagon.isPassengerWagon()) {
+				// Neuen Waggon als letzten Personenwaggon in den Zug einfügen,
+				// vor die dann folgenden Güterwaggons
+				newWagon.setId(numberOfWagons + 1);
+				newWagon.setNext(next);
+				this.setNext(newWagon);
+			} else {
+				// Waggonzähler zurücksetzen, um Anzahl der bestehenden
+				// Güterwaggons zu ermitteln; Neuen Waggon als letzten
+				// Güterwaggon hinten ans Zugende fügen
+				next.addWagon(newWagon, 1);
+			}
+		}
+	}
+	
+
 	private boolean isCarriesDangerousGoods() {
-		return true;
+		return carriesDangerousGoods;
 	}
 
 	public boolean isPassengerWagon() {
-		return true;
+		return isPassengerWagon;
 	}
 
 	public int getId() {
@@ -191,11 +284,11 @@ public class Wagon {
 	}
 
 	public boolean getIsPassengerWagon() {
-		return true;
+		return isPassengerWagon;
 	}
 
 	public boolean getIsCarriesDangerousGoods() {
-		return true;
+		return carriesDangerousGoods;
 	}
 
 	public void setId(int id) {

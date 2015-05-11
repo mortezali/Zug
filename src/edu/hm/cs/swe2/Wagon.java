@@ -25,7 +25,7 @@ public class Wagon {
 
 	}
 
-	public String printWagon(int level) {
+/*	public String printWagon(int level) {
 		String sign = "";
 		if (!this.isPassengerWagon()) {
 			sign = "f";
@@ -51,6 +51,54 @@ public class Wagon {
 		System.out.println(" *" + "\n" + "**********->" + "\n" + " *** "
 				+ " *** ");
 
+}	*/
+	
+	public String toString(int level) {
+
+		String result = "";
+
+		switch (level) {
+		case 0:
+			// Darstellen der Räder
+			result += " ***  ***   ";
+			break;
+		case 1:
+			// Darstellen von Bodenplatte und Anhängerkupplung
+			result += "**********->";
+			break;
+		case 2:
+			// Darstellen von Waggonbegrenzung und Beschriftung
+			result += "* ";
+			if (isPassengerWagon) {
+				result += "p";
+			} else {
+				result += "f";
+			}
+			if (id < 10) {
+				result += "0";
+			}
+			result += id + " ";
+			if (carriesDangerousGoods) {
+				result += "dg";
+			} else {
+				result += "  ";
+			}
+			result += " *  ";
+			break;
+		case 3:
+			// Darstellen der Deckelplatte
+			result += "**********  ";
+			break;
+		}
+		if (next == null) {
+			// Zeilenumbruch, falls Zugende erreicht ist
+			result += "\n";
+		} else {
+			// Gleiche Zeile für nächsten Waggon darstellen
+			result += next.toString(level);
+		}
+
+		return result;
 	}
 
 	public boolean trainCarriesDangerousGoods(Wagon wagon) {

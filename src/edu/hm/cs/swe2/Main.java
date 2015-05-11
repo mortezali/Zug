@@ -11,7 +11,8 @@ public class Main {
 		Wagon PwwDa = new Wagon (false, true);
 		Wagon PwoDa = new Wagon (true, false);
 		
-		
+		train.addWagon(GwDa);
+		train.printTrain();
 
 	}
 

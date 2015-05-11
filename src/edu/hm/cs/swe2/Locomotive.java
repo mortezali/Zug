@@ -41,10 +41,24 @@ public class Locomotive {
 
 	
 
-	// TODO: lï¿½uft die 5 ebenen durch und ruft jeweils alle Ebenen auf.
+/*	// TODO: lï¿½uft die 5 ebenen durch und ruft jeweils alle Ebenen auf.
 	public String toString() {
 		return toString();
 
+	}*/
+	
+public String toString() {
+		
+		String result = "";
+		
+		// Ruft private Hilfsmethode auf; 
+		// Auszugebende Zeile über Parameter i gesteuert 
+		for (int i=5; i>=0; i--) {
+		  result += this.toString(i);
+		}
+		result += "\n";
+		
+		return result;
 	}
 
 	// Erstellen Sie die Methode printTrain(), die die Darstellung des
@@ -53,7 +67,7 @@ public class Locomotive {
 
 	// TODO: Die Methode sollte durch printTrain() ersetzt werden und arbeitet
 	// mit toStirng()
-	public String toString(int level) {
+/*	public String toString(int level) {
 		
 		String output = "";
 		
@@ -80,6 +94,46 @@ public class Locomotive {
 		}
 return output;
 
+	}*/
+
+private String toString(int level) {
+
+	String result = "";
+	switch (level) {
+	case 0:
+		// Erzeugen der Räder
+		result += " ***    ***   ";
+		break;
+	case 1:
+		result += "************->";
+		break;
+	case 2:
+		result += "* " + motivePower.toString()  + " *  ";
+		break;
+	case 3:
+		result += "************  ";
+		break;
+	case 4:
+		result += " **    *   *";
+		break;
+	case 5:
+		result += " **   ******";
+		break;
+	}
+	if (next == null || level == 4 || level == 5) {
+		result += "\n";
+	} else {
+		result += next.toString(level);
+	}
+	
+	return result;
+}
+	
+	public void printTrain() {
+		// Öffentlich aufrufbare Methode zum Drucken eines Zugs;
+		// Ruft gleichnamige private Ausgabemethode auf; 
+		// Auszugebende Zeile über Parameter i gesteuert 
+		System.out.println(this.toString());
 	}
 //		System.out.println("**    ******" + "\n" + "**    *     *" + "\n"
 //				+ "*************" + "* " + motivePower.toString() + "  *");
